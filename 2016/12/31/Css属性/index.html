@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Css使用记录 | 好记性不如烂笔头</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Css使用记录</h1><a id="logo" href="/.">好记性不如烂笔头</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Css使用记录</h1><div class="post-meta">Dec 31, 2016<span> | </span><span class="category"><a href="/categories/FrontEnd/">FrontEnd</a></span></div><div class="post-content"><p>编码</p>
+<p><meta charset="utf-8"><br>ie兼容,ie有chrome插件,就用chrome的内核</p>
+<p><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><br>双核用webkit</p>
+<p><meta name="renderer" content="webkit"><br>搜索用的</p>
+<p><meta name="description" content="一个真实的网络问答社区，帮助你寻找答案，分享知识。"><br>响应式</p>
+<p><meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"><br>标题</p>
+<p><title>知乎 - 与世界分享你的知识、经验和见解</title><br>给手机平板建桌面图标</p>
+<p><link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-152.87c020b9.png" sizes="152x152"></p>
+<p><link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-120.496c913b.png" sizes="120x120"></p>
+<p><link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-76.dcf79352.png" sizes="76x76"></p>
+<p><link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-60.9911cffb.png" sizes="60x60"><br>谷歌站长,利于Seo</p>
+<p><meta name="google-site-verification" content="FTeR0c8arOPKh8c5DYh_9uu98_zJbaWw53J-Sch9MTg"><br>利于Seo<br>这个也是Google网站管理员工具的特定元标记，与meta name=”verify-v1”等效，是最新的元标记。<br>这是google的网站认证代码，也就是证明这个网站的所有者是你。<br>获取以上代码到自己网站上，可以进入<a href="http://www.google.com/webmasters/tools/，将自己网站添加进google网站管理，有利于google的收录。" target="_blank" rel="noopener">http://www.google.com/webmasters/tools/，将自己网站添加进google网站管理，有利于google的收录。</a></p>
+<p>body {<br>    color: #555;<br>    font-size: 15px;<br>    line-height: 1.7;<br>    font-family: ‘Helvetica Neue’,Helvetica,’PingFang SC’,’Hiragino Sans GB’,’Microsoft YaHei’,Arial,sans-serif;<br>    background: #f7fafc;<br>    -webkit-font-smoothing: subpixel-antialiased;<br>}</p>
+<p>body{</p>
+<p>-webkit-font-smoothing: antialiased;</p>
+<p>}</p>
+<p>body {<br>    font-family: ‘Helvetica Neue’,Helvetica,Arial,sans-serif;<br>    font-size: 13px;<br>    line-height: 1.7;<br>    word-wrap: break-word;<br>    color: #222;<br>    background-color: #fff;<br>}<br>这个属性可以使页面上的字体抗锯齿,使用后字体看起来会更清晰。<br>加上之后就顿时感觉页面小清晰了。</p>
+<p>element.style {<br>    padding-bottom: 30px;<br>}<br>表示chrome元素本地的样式,不是css文件里的</p>
+<p>#background-size-contain{<br>    background-size:contain;<br>}</p>
+<ul>
+<li>background-size的contain特定值会保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域。</li>
+</ul>
+<hr>
+<meta name="“renderer”" content="“webkit|ie-comp|ie-stand”">
+
+<p>content的取值为webkit，ie-comp，ie-stand之一，区分大小写，分别代表用极速模式，兼容模式，IE模式打开。</p>
+<meta name="renderer" content="webkit">
+
+<p><a href="http://www.jb51.net/web/253449.html" target="_blank" rel="noopener">http://www.jb51.net/web/253449.html</a></p>
+<hr>
+<h1 id="X-UA-Compatible-IE-edge-chrome-1"><a href="#X-UA-Compatible-IE-edge-chrome-1" class="headerlink" title="X-UA-Compatible IE=edge,chrome=1"></a>X-UA-Compatible IE=edge,chrome=1</h1><p><a href="http://blog.163.com/shexinyang@126/blog/static/136739312201372711735276/" target="_blank" rel="noopener">http://blog.163.com/shexinyang@126/blog/static/136739312201372711735276/</a></p>
+<hr>
+<p>auto是随内容的高度而撑开的。100%是根据父级元素的高度来决定的。例如：<div style="height:100px;width:200px;">      <div style="height:auto;width:100px;float:left;">这个容器的高度是随里面的内容的高度而定</div>        <div style="height:100%;width:100px;float:right;">这个容器的高度为父级的高度，100px</div> </div></p>
+<hr>
+<p>CSS relative相对定位</p>
+<p>设置为相对定位的元素框会偏移某个距离。元素仍然保持其未定位前的形状，它原本所占的空间仍保留。</p>
+<h2 id="http-developer-51cto-com-art-201008-221681-htm"><a href="#http-developer-51cto-com-art-201008-221681-htm" class="headerlink" title="http://developer.51cto.com/art/201008/221681.htm"></a><a href="http://developer.51cto.com/art/201008/221681.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201008/221681.htm</a></h2><p>盒子模型<br>块元素和行内元素<br><a href="http://www.tuicool.com/articles/JzuQZnI" target="_blank" rel="noopener">http://www.tuicool.com/articles/JzuQZnI</a></p>
+<hr>
+<h2 id="父元素设置relative-子元素相对父元素absolute"><a href="#父元素设置relative-子元素相对父元素absolute" class="headerlink" title="父元素设置relative,子元素相对父元素absolute,"></a>父元素设置relative,子元素相对父元素absolute,</h2><p>ie判断<br><a href="http://blog.sina.com.cn/s/blog_67bb1d920101e7af.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_67bb1d920101e7af.html</a></p>
+<hr>
+<p>清除浮动</p>
+<p>在浮动元素(通常是contain),和非浮动元素之间(footer),通常增加一个div(clear:both)</p>
+<hr>
+<p>盒子模型</p>
+<p>css设置的宽度是内容的宽度<br>padding border margin的宽度都会增加盒子的宽度.<br>padding 的颜色是内容background的颜色<br>border的颜色可以自己设定<br>margin的颜色是父元素的background颜色</p>
+<hr>
+<p>flex 布局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">felx 有三个参数,分别是:</span><br><span class="line"></span><br><span class="line">第一个参数如果是0,则不参与父元素的分割,宽度由第三个参数决定,(auto自身内容决定或者指定的px),</span><br><span class="line">如果非0,则与所有第一参数非0的子项目,按值参与分割父元素,(在保证auto和指定的px基础上分割)</span><br><span class="line"></span><br><span class="line">第二个参数不常用,是0,表示不能别其他元素压缩,这个时候可能有所有子项目的宽度和会溢出父元素.</span><br><span class="line"></span><br><span class="line">第三个参数,表示元素初始宽度,auto或者指定px.</span><br><span class="line"></span><br><span class="line">flex:1 (0,auto),后可使用默认值</span><br><span class="line"></span><br><span class="line">常用</span><br><span class="line">-------</span><br><span class="line">二分栏,先固定一个,两一个充盈父元素</span><br><span class="line">0 0 80px</span><br><span class="line">1</span><br><span class="line">------</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">1</span><br><span class="line">等分</span><br></pre></td></tr></table></figure>
+<hr>
+<p>absolute绝对定位,用在视口,就是手机怎么滑动都在视口<br>overflow</p>
+<hr>
+<p>滤镜<br>backdrop-filter:blur(10px)</p>
+<hr>
+<p>Vue Css过渡</p>
+<ol>
+<li>先在想要有过渡效果的层div上写transition=’效果名,如fade’</li>
+</ol>
+<ol start="2">
+<li><p>过渡时间<br>fade-transition: all 0.5</p>
+</li>
+<li><p>最终效果<br>fade-transition:<br>opacity:1<br>background:xxxx</p>
+</li>
+<li>进入和离开<br>fade-enter,fade-leave</li>
+</ol>
+<hr>
+<p>次序<br>display<br>width height<br>align-text<br>padding<br>margin<br>background<br>front</p>
+<hr>
+<p>移动元素内部用<br>padding<br>或者父元素用text-align等</p>
+<hr>
+<p><strong>布局</strong></p>
+<p>优先flex</p>
+<p><a href="http://www.w3cplus.com/css3/flexbox-basics.html" target="_blank" rel="noopener">http://www.w3cplus.com/css3/flexbox-basics.html</a></p>
+<p>传统布局,display position,float</p>
+<p>列表<br>负边距 negative margin</p>
+<hr>
+<p>定义和用法</p>
+<p>clear 属性规定元素的哪一侧不允许其他浮动元素。<br><a href="http://www.w3school.com.cn/tiy/t.asp?f=csse_class-clear" target="_blank" rel="noopener">http://www.w3school.com.cn/tiy/t.asp?f=csse_class-clear</a></p>
+<p>.clearfix:after {clear:both; content:”.”; display:block; height:0pt; visibility:hidden; overflow:hidden;}<br>.clear{clear:both;height:1px; margin-top:-1px; width:100%;}</p>
+<p><a href="http://www.admin10000.com/document/6259.html" target="_blank" rel="noopener">http://www.admin10000.com/document/6259.html</a></p>
+<hr>
+<p>font-weight<br>粗细</p>
+<hr>
+<p>双飞翼布局<br><a href="http://www.imooc.com/wenda/detail/254035" target="_blank" rel="noopener">http://www.imooc.com/wenda/detail/254035</a><br><a href="http://www.cnblogs.com/langzs/archive/2013/01/27/taobaoshuangfeiyi.html" target="_blank" rel="noopener">http://www.cnblogs.com/langzs/archive/2013/01/27/taobaoshuangfeiyi.html</a><br><a href="http://www.jianshu.com/p/549aaa5fabaa" target="_blank" rel="noopener">http://www.jianshu.com/p/549aaa5fabaa</a></p>
+<hr>
+<p>list-style:none是啥意思</p>
+<p>li前面不是有小圆点儿么？<br>可以使用 list-style:none;来消除</p>
+<hr>
+<p>CSS overflow 属性</p>
+<p>元素的高度与它父元素被指定的高度冲突时:</p>
+<p>visible 默认值。内容不会被修剪，会呈现在元素框之外。<br>hidden  被修剪不见了<br>scroll  出现个可滚动的窗口<br>auto    少的时候正常,多的时候出现窗口</p>
+<hr>
+<hr>
+<p>充盈父元素</p>
+<p>width: 100%;<br>height: 100%;</p>
+<hr>
+<p>z-index只能使用在position为absolute或relative的元素上才有效<br>如果用background，图片不能进行缩放</p>
+<hr>
+<p><img src="http://upload-images.jianshu.io/upload_images/2399926-4c1e1d85a73a926a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="盒子模型"><br>暂时写Css的心得:</p>
+<ul>
+<li><p>一定要有次序，先确定什么类型，是否是Block</p>
+</li>
+<li><p>再写宽高</p>
+</li>
+<li><p>再写可以继承的</p>
+</li>
+</ul>
+<hr>
+<p>inline-block 和float的区别</p>
+<hr>
+<h1 id="背景图片设置"><a href="#背景图片设置" class="headerlink" title="背景图片设置"></a>背景图片设置</h1><p>可参考<br><a href="http://www.kip.com.tw/modules/news/article.php?storyid=35" target="_blank" rel="noopener">http://www.kip.com.tw/modules/news/article.php?storyid=35</a></p>
+<hr>
+<p>Css3 Box-siing 兼容性<br><a href="http://blog.sina.com.cn/s/blog_877284510101kt87.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_877284510101kt87.html</a></p>
+</div><div class="tags"><a href="/tags/FrontEnd/">FrontEnd</a></div><div class="post-nav"><a class="pre" href="/2017/01/01/Css性能优化/">Css性能优化</a><a class="next" href="/2016/12/31/响应式设计/">响应式设计</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://iusepython.com"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Others/">Others</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spider/">Spider</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/Web/" style="font-size: 15px;">Web</a> <a href="/tags/Frontend/" style="font-size: 15px;">Frontend</a> <a href="/tags/FrontEnd/" style="font-size: 15px;">FrontEnd</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Deploy/" style="font-size: 15px;">Deploy</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Ubuntu/" style="font-size: 15px;">Ubuntu</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/IDE/" style="font-size: 15px;">IDE</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/sqlalchemy/" style="font-size: 15px;">sqlalchemy</a> <a href="/tags/Virtualenv/" style="font-size: 15px;">Virtualenv</a> <a href="/tags/flask/" style="font-size: 15px;">flask</a> <a href="/tags/Html/" style="font-size: 15px;">Html</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/node-js/" style="font-size: 15px;">node.js</a> <a href="/tags/Shell/" style="font-size: 15px;">Shell</a> <a href="/tags/Spider/" style="font-size: 15px;">Spider</a> <a href="/tags/Vim/" style="font-size: 15px;">Vim</a> <a href="/tags/Webpack/" style="font-size: 15px;">Webpack</a> <a href="/tags/zsh/" style="font-size: 15px;">zsh</a> <a href="/tags/English/" style="font-size: 15px;">English</a> <a href="/tags/Others/" style="font-size: 15px;">Others</a> <a href="/tags/DA/" style="font-size: 15px;">DA</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/04/Python类中使用-call/">Python类中使用__call__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/02/Sqlalchemy/">Sqlalchemy</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/04/Python-try-except-else/">Python_try_except_else</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/04/Python的-str/">Python的__str__</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/27/数据分析相关概念整理/">数据分析相关概念整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/18/Python私有变量/">Python私有变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/17/Ubuntu系统崩溃问题/">Ubuntu系统崩溃问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/16/Python的-init-文件/">Python的__init__文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/11/API/">API</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/10/Python包工具梳理/">Python包工具梳理</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="https://github.com/fanhaipeng0403" title="Github" target="_blank">Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">好记性不如烂笔头.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
