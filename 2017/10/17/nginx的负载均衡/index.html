@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Nginx负载均衡 | 好记性不如烂笔头</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Nginx负载均衡</h1><a id="logo" href="/.">好记性不如烂笔头</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Nginx负载均衡</h1><div class="post-meta">Oct 17, 2017</div><div class="post-content"><p>转发的文章 <a href="https://www.shixinke.com/nginx/nginx-upstream" target="_blank" rel="noopener">https://www.shixinke.com/nginx/nginx-upstream</a></p>
+<p>一、什么是负载均衡？<br>根据一定的规则将请求分发到不同的服务器上，让各个服务器分摊请求，而不是让一台服务器来处理请求</p>
+<p>传统的请求过程</p>
+<p>使用负载均衡：</p>
+<p>好处：减轻同一台服务器的压力，提高服务器的响应速度</p>
+<p>二、nginx实现负载均衡？<br>(一)upstream的用法<br>1、upstream<br>作用：是用来定义服务器组的模块</p>
+<p>使用范围：proxy_pass、fastcgi_pass、memcached_pass等</p>
+<p>结构：</p>
+<p>upstream groupName {<br>    server serverName1 [param1=value1] [param2=value2] [param3];<br>    server serverName2;<br>}<br>groupName即为组名，是自定义的,如：upstream webserver;</p>
+<p>2、server<br>upstream中的server用来指定一个服务器。</p>
+<p>server的类型可以是：</p>
+<p>(1)域名：如:webserver.website.com;</p>
+<p>(2)IP：如:192.168.0.239:80;</p>
+<p>(3)Unix套接字文件：如unix:/tmp/webserver;</p>
+<p>例如：</p>
+<p>upstream webserver {<br>     server httpweb.withec.com;<br>     server 192.168.18.201 weight=5 max_fails=3 fail_timeout=20s;<br>     server 192.168.18.202 backup;<br>     server 192.168.18.293 down;<br>     server unix:/tmp/httpdweb;<br>}<br>server中可用的参数：</p>
+<p>(1)weight:表示权重，权重越大，表示被访问的概率越大<br>用法：weight=数字；</p>
+<p>server 192.168.18.201 weight=4;<br>(2)max_fails：表示连接失败重新连接的最多次数<br>用法：max_fails=3;</p>
+<p>如：</p>
+<p>server 192.168.18.202 max_fails=3;<br>(3)fail_timeout:连接超时的时间(即多久算连接失败)<br>用法：fail_timeout=时间;</p>
+<p>如：20秒就算连接失败</p>
+<p>server 192.168.18.202 max_fails=3 fail_timeout=20s;<br>(4)backup:标记一台服务器作为备用服务器(它只在其他服务器繁忙的时候工作)<br>用法：server serverName backup;</p>
+<p>如：</p>
+<p>server 192.168.18.203 backup;<br>(5)down:标记一台服务器下线或者暂时不可用<br>用法：server serverName down;</p>
+<p>如：</p>
+<p>server 192.168.18.203 down;<br>(6)max_conns:表示指定的服务器最大连接数限制(nginx1.5.9以上版本才有的参数)<br>用法：max_conns=数字;</p>
+<p>如：</p>
+<p>server 192.168.18.202 max_conns=1024;<br>(二)、upstream实验：<br>4台机器：</p>
+<p>IP:192.168.18.200(作前端服务器)</p>
+<p>192.168.18.201</p>
+<p>192.168.18.202</p>
+<p>192.168.18.203</p>
+<p>步骤：</p>
+<p>1、三台机器上的nginx都需要启动，并在各自web根目录下的index.html的文件中加入机器识别信息，具体如下：</p>
+<p>200的机器上的index.html添加：from 200</p>
+<p>201的机器上的index.html,添加：from 201</p>
+<p>202的机器上的index.html,添加：from 202</p>
+<p>203的机器上的index.html,添加：form 203</p>
+<p>2、在237的机器上配置nginx</p>
+<p>(1)在http块中加入：</p>
+<p>upstream webserver {<br>      server 192.168.18.201:80;<br>      server 192.168.18.202:80;<br>      server 192.168.18.203:80;<br>}<br>       (2)在server区段的location段加入：</p>
+<p>location / {<br>    proxy_pass <a href="http://webserver" target="_blank" rel="noopener">http://webserver</a>;<br>}<br>注：webserver这个组名前一定要记住加http://</p>
+<p>打开浏览器访问：<a href="http://192.168.18.200，查看显示内容" target="_blank" rel="noopener">http://192.168.18.200，查看显示内容</a></p>
+<p>发现显示”from 201”</p>
+<p>刷新显示”from 202”</p>
+<p>再刷新显示”from 203”</p>
+<p>再刷新显示””from 201</p>
+<p>依次刷新会在这三台机器之间循环(这种专业的叫法叫轮询)</p>
+<p>(三)upstream模块主要指令<br>1、hash:指定轮询的规则按照指定的key值来计算<br>用法：hash key;</p>
+<p>这个key可以包含文本，变量或者文本与变量的组合。</p>
+<p>2、ip_hash;指定轮询的规则按照ip的hash值来计算<br>针对上面的实验：我们在upstream中加入ip_hash，再查看：</p>
+<p>发现我们无论怎么刷新，访问的都是201上面的文件(因为客户端的IP没变)</p>
+<p>更多的指令可以参考nginx官方文档：</p>
+<p><a href="http://nginx.org/cn/docs/http/ngx_http_upstream_module.html" target="_blank" rel="noopener">http://nginx.org/cn/docs/http/ngx_http_upstream_module.html</a></p>
+<p>(如果不喜欢看英文文档，可以看中文文档)</p>
+<p><a href="http://nginx.org/cn/docs/http/ngx_http_upstream_module.html" target="_blank" rel="noopener">http://nginx.org/cn/docs/http/ngx_http_upstream_module.html</a></p>
+</div><div class="tags"><a href="/tags/Nginx/">Nginx</a></div><div class="post-nav"><a class="pre" href="/2017/10/17/nginx的proxy_pass详解/">Nginx配置本地域名路由</a><a class="next" href="/2017/10/17/查看文件大小/">Nginx配置本地域名路由</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://iusepython.com"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/FrontEnd/">FrontEnd</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Others/">Others</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spider/">Spider</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/sqlalchemy/" style="font-size: 15px;">sqlalchemy</a> <a href="/tags/Frontend/" style="font-size: 15px;">Frontend</a> <a href="/tags/Web/" style="font-size: 15px;">Web</a> <a href="/tags/FrontEnd/" style="font-size: 15px;">FrontEnd</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/Deploy/" style="font-size: 15px;">Deploy</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Mysql/" style="font-size: 15px;">Mysql</a> <a href="/tags/IDE/" style="font-size: 15px;">IDE</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/Virtualenv/" style="font-size: 15px;">Virtualenv</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Ubuntu/" style="font-size: 15px;">Ubuntu</a> <a href="/tags/flask/" style="font-size: 15px;">flask</a> <a href="/tags/Html/" style="font-size: 15px;">Html</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/node-js/" style="font-size: 15px;">node.js</a> <a href="/tags/Shell/" style="font-size: 15px;">Shell</a> <a href="/tags/Vim/" style="font-size: 15px;">Vim</a> <a href="/tags/Spider/" style="font-size: 15px;">Spider</a> <a href="/tags/Webpack/" style="font-size: 15px;">Webpack</a> <a href="/tags/zsh/" style="font-size: 15px;">zsh</a> <a href="/tags/du-df/" style="font-size: 15px;">du / df</a> <a href="/tags/DA/" style="font-size: 15px;">DA</a> <a href="/tags/Others/" style="font-size: 15px;">Others</a> <a href="/tags/Socket/" style="font-size: 15px;">Socket</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/11/29/docker-compose/">docker-compose的语法和名利</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/17/快速查看大文件位置/">快速定位大文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/SSH config使用教程/">SSH config使用教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/17/nginx的proxy_pass详解/">Nginx配置本地域名路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/17/nginx的负载均衡/">Nginx负载均衡</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/17/查看文件大小/">Nginx配置本地域名路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/网络概念整理/">网络概念整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/nginx配置本地域名路由/">Nginx配置本地域名路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/17/Git Rebase/">Git Rebase</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/04/Python类中使用-call/">Python类中使用__call__</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="https://github.com/fanhaipeng0403" title="Github" target="_blank">Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">好记性不如烂笔头.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
